@@ -1,0 +1,94 @@
+{
+  "alunos": [
+    {
+      "id": "1",
+      "nome": "Ana Clara Martins",
+      "email": "ana.martins@example.com",
+      "matricula": "20251001",
+      "curso": "Engenharia de Software",
+      "ativo": true,
+      "dataNascimento": "2001-06-27"
+    },
+    {
+      "id": "2",
+      "nome": "Bruno Costa Lima",
+      "email": "bruno.lima@example.com",
+      "matricula": "20251002",
+      "curso": "Ciência da Computação",
+      "dataNascimento": "2002-11-20",
+      "ativo": true
+    },
+    {
+      "id": "3",
+      "nome": "Carla Dias Ferreira",
+      "email": "carla.ferreira@example.com",
+      "matricula": "20252003",
+      "curso": "Sistemas de Informação",
+      "dataNascimento": "2004-02-10",
+      "ativo": false
+    },
+    {
+      "id": "4",
+      "nome": "Daniel Alves Pereira",
+      "email": "daniel.pereira@example.com",
+      "matricula": "20251004",
+      "curso": "Engenharia de Software",
+      "dataNascimento": "2003-09-01",
+      "ativo": true
+    },
+    {
+      "id": "5",
+      "nome": "Eduarda Souza Santos",
+      "email": "eduarda.santos@example.com",
+      "matricula": "20253005",
+      "curso": "Design Gráfico",
+      "dataNascimento": "2005-07-22",
+      "ativo": true
+    },
+    {
+      "id": "6",
+      "nome": "Felipe Oliveira Rocha",
+      "email": "felipe.rocha@example.com",
+      "matricula": "20252006",
+      "curso": "Sistemas de Informação",
+      "dataNascimento": "2002-12-30",
+      "ativo": false
+    },
+    {
+      "id": "7",
+      "nome": "Gabriela Ribeiro Azevedo",
+      "email": "gabriela.azevedo@example.com",
+      "matricula": "20251007",
+      "curso": "Ciência da Computação",
+      "dataNascimento": "2004-03-18",
+      "ativo": true
+    },
+    {
+      "id": "8",
+      "nome": "Heitor Barbosa Castro",
+      "email": "heitor.castro@example.com",
+      "matricula": "20251008",
+      "curso": "Engenharia de Software",
+      "dataNascimento": "2003-08-05",
+      "ativo": true
+    },
+    {
+      "id": "f436",
+      "nome": "Matheus Bomfati Lemes",
+      "email": "matheusbomfati10@gmail.com",
+      "matricula": "20251009",
+      "curso": "Ciência da Computação",
+      "ativo": true,
+      "dataNascimento": "2003-05-28"
+    },
+    {
+      "id": "b31f",
+      "nome": "Matheus Bomfati",
+      "email": "matheusbomfati11@gmail.com",
+      "matricula": "20251010",
+      "curso": "Ciência da Computação",
+      "ativo": true,
+      "dataNascimento": "2002-05-28"
+    }
+  ]
+}
