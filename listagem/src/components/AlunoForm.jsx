@@ -1,46 +1,19 @@
 // src/components/AlunoForm.jsx
+import React from "react";
 
-import React, { useState, useEffect } from "react";
-
+// O formulário agora recebe os dados (formData) e a função para alterá-los (onFormChange) como props.
 function AlunoForm({
+  formData,
+  onFormChange,
   onSubmit,
-  initialData,
   isSubmitting,
   buttonText = "Salvar",
 }) {
-  // Define a estrutura padrão de um aluno vazio
-  const defaultFormState = {
-    nome: "",
-    email: "",
-    matricula: "",
-    curso: "",
-    ativo: true,
-  };
-
-  // O estado do formulário começa com os valores padrão
-  const [aluno, setAluno] = useState(defaultFormState);
-
-  // MUDANÇA PRINCIPAL AQUI:
-  // Este useEffect agora só vai preencher o formulário se receber
-  // dados iniciais com um ID (ou seja, no modo de edição).
-  // Ele não vai mais interferir no formulário de adição.
-  useEffect(() => {
-    if (initialData && initialData.id) {
-      setAluno(initialData);
-    }
-  }, [initialData]);
-
-  const handleChange = (e) => {
-    const { name, value, type, checked } = e.target;
-    setAluno((prev) => ({
-      ...prev,
-      [name]: type === "checkbox" ? checked : value,
-    }));
-  };
+  // O formulário não gerencia mais seu próprio estado.
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    onSubmit(aluno);
+    onSubmit(formData);
   };
 
   return (
@@ -54,8 +27,8 @@ function AlunoForm({
           className="form-control"
           id="nome"
           name="nome"
-          value={aluno.nome || ""}
-          onChange={handleChange}
+          value={formData.nome || ""}
+          onChange={onFormChange} // Usa a função do componente pai
           required
         />
       </div>
@@ -68,8 +41,8 @@ function AlunoForm({
           className="form-control"
           id="email"
           name="email"
-          value={aluno.email || ""}
-          onChange={handleChange}
+          value={formData.email || ""}
+          onChange={onFormChange} // Usa a função do componente pai
           required
         />
       </div>
@@ -82,8 +55,8 @@ function AlunoForm({
           className="form-control"
           id="matricula"
           name="matricula"
-          value={aluno.matricula || ""}
-          onChange={handleChange}
+          value={formData.matricula || ""}
+          onChange={onFormChange} // Usa a função do componente pai
           required
         />
       </div>
@@ -96,22 +69,22 @@ function AlunoForm({
           className="form-control"
           id="curso"
           name="curso"
-          value={aluno.curso || ""}
-          onChange={handleChange}
+          value={formData.curso || ""}
+          onChange={onFormChange} // Usa a função do componente pai
           required
         />
       </div>
       <div className="mb-3">
-        <label htmlFor="nascimento" className="form-label">
-          Data de nascimento
+        <label htmlFor="dataNascimento" className="form-label">
+          Data de Nascimento
         </label>
         <input
-          type="date"
+          type="date" // <<< Usando o tipo 'date'
           className="form-control"
           id="dataNascimento"
-          name="dataNascimento"
-          value={aluno.dataNascimento || ""}
-          onChange={handleChange}
+          name="dataNascimento" // O 'name' deve ser igual ao campo no seu db.json
+          value={formData.dataNascimento || ""}
+          onChange={onFormChange}
           required
         />
       </div>
@@ -121,8 +94,8 @@ function AlunoForm({
           className="form-check-input"
           id="ativo"
           name="ativo"
-          checked={aluno.ativo || false}
-          onChange={handleChange}
+          checked={formData.ativo || false}
+          onChange={onFormChange} // Usa a função do componente pai
         />
         <label className="form-check-label" htmlFor="ativo">
           Aluno Ativo

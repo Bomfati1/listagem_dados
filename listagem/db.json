@@ -73,22 +73,13 @@
       "ativo": true
     },
     {
-      "id": "f436",
+      "id": "a82a",
       "nome": "Matheus Bomfati Lemes",
       "email": "matheusbomfati10@gmail.com",
-      "matricula": "20251009",
-      "curso": "Ciência da Computação",
+      "matricula": "20251020",
+      "curso": "Engenharia de Computação",
       "ativo": true,
       "dataNascimento": "2003-05-28"
-    },
-    {
-      "id": "b31f",
-      "nome": "Matheus Bomfati",
-      "email": "matheusbomfati11@gmail.com",
-      "matricula": "20251010",
-      "curso": "Ciência da Computação",
-      "ativo": true,
-      "dataNascimento": "2002-05-28"
     }
   ]
 }

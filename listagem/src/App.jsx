@@ -5,8 +5,6 @@ import { BrowserRouter, Link, Route, Routes } from "react-router-dom";
 import { Nav, Container, Navbar } from "react-bootstrap";
 import "bootstrap/dist/css/bootstrap.min.css";
 import AlunosListPage from "./pages/AlunosListPage"; // Supondo que você renomeou
-import AddItemPage from "./pages/AddItemPage";
-import EditAlunoPage from "./pages/EditAlunoPage"; // <<< NOVO: Importa a página de edição
 
 function App() {
   return (
@@ -17,7 +15,7 @@ function App() {
           <Nav.Link as={Link} to="/">
             Página Inicial
           </Nav.Link>
-          <Nav.Link as={Link} to="/alunos">
+          <Nav.Link as={Link} to="/add">
             Cadastro de alunos
           </Nav.Link>
           <Nav.Link as={Link} to="/sobre">
@@ -27,8 +25,8 @@ function App() {
         <Routes>
           <Route path="/" element={<Home />}></Route>
           <Route path="/alunos" element={<Alunos />}></Route>
-          <Route path="/add" element={<AddItemPage />} /> {/* ROTA ANTIGA */}
-          <Route path="/edit/:alunoId" element={<EditAlunoPage />} />{" "}
+          <Route path="/edit" element={<AlunosListPage />}></Route>
+          <Route path="/add" element={<AlunosListPage />}></Route>
           <Route path="/sobre" element={<Sobre />}></Route>
           <Route path="/sobre" element={<Sobre />} />
         </Routes>

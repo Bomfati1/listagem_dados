@@ -7,10 +7,8 @@ import {
   createAluno,
   updateAluno,
 } from "../services/alunoService";
-
-// Importando componentes do react-bootstrap
 import { Button, Modal, Spinner } from "react-bootstrap";
-import AlunoForm from "../components/AlunoForm"; // Nosso formulário reutilizável
+import AlunoForm from "../components/AlunoForm";
 
 function AlunosListPage() {
   // Estados da lista principal
@@ -18,18 +16,29 @@ function AlunosListPage() {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
 
-  // Estados para controlar os modais
-  const [showModal, setShowModal] = useState(false);
-  const [modalType, setModalType] = useState(""); // 'add', 'edit', 'delete'
+  // Estados de controle dos modais
+  const [modalType, setModalType] = useState("");
   const [selectedAluno, setSelectedAluno] = useState(null);
   const [isSubmitting, setIsSubmitting] = useState(false);
 
-  // Carrega os alunos da API
+  // Estado para os dados do formulário
+  const [formData, setFormData] = useState({});
+
+  const defaultFormState = {
+    nome: "",
+    email: "",
+    matricula: "",
+    curso: "",
+    ativo: true,
+  };
+
+  // LÓGICA PARA BUSCAR OS ALUNOS (ESTAVA FALTANDO A IMPLEMENTAÇÃO)
   const fetchAlunos = async () => {
     try {
       setLoading(true);
       const data = await getAlunos();
       setAlunos(data);
+      setError(null);
     } catch (err) {
       setError("Não foi possível carregar os alunos.");
     } finally {
@@ -41,38 +50,40 @@ function AlunosListPage() {
     fetchAlunos();
   }, []);
 
-  // Funções para abrir os modais
+  // Funções para ABRIR os modais
   const handleShowAddModal = () => {
-    setSelectedAluno(null); // Limpa seleção anterior
+    setFormData(defaultFormState);
     setModalType("add");
-    setShowModal(true);
   };
 
   const handleShowEditModal = (aluno) => {
-    setSelectedAluno(aluno);
+    setFormData(aluno);
     setModalType("edit");
-    setShowModal(true);
   };
 
   const handleShowDeleteModal = (aluno) => {
     setSelectedAluno(aluno);
     setModalType("delete");
-    setShowModal(true);
   };
 
-  // Função para fechar qualquer modal
   const handleCloseModal = () => {
-    setShowModal(false);
-    setError(null); // Limpa erros ao fechar o modal
+    setModalType("");
+    setError(null);
   };
 
-  // Lógica para Deletar
+  const handleFormChange = (e) => {
+    const { name, value, type, checked } = e.target;
+    setFormData((prev) => ({
+      ...prev,
+      [name]: type === "checkbox" ? checked : value,
+    }));
+  };
+
   const handleDelete = async () => {
     if (!selectedAluno) return;
     setIsSubmitting(true);
     try {
       await deleteAluno(selectedAluno.id);
-      // Remove o aluno da lista local para atualização instantânea da UI
       setAlunos(alunos.filter((a) => a.id !== selectedAluno.id));
       handleCloseModal();
     } catch (err) {
@@ -82,21 +93,17 @@ function AlunosListPage() {
     }
   };
 
-  // Lógica para Adicionar e Editar
-  const handleSave = async (alunoData) => {
-    // Validação de matrícula repetida para NOVOS alunos
-    if (!alunoData.id) {
-      // Só valida se for um novo aluno (sem ID)
+  const handleSave = async (dataToSave) => {
+    if (!dataToSave.id) {
       const matriculaExists = alunos.some(
-        (a) => a.matricula === alunoData.matricula
+        (a) => a.matricula === dataToSave.matricula
       );
       if (matriculaExists) {
-        setError("Esta matrícula já está em uso. Por favor, insira outra.");
-        return; // Interrompe a submissão
+        setError("Esta matrícula já está em uso.");
+        return;
       }
     }
 
-    // Confirmação antes de salvar
     const isConfirmed = window.confirm(
       "Deseja mesmo salvar estas informações?"
     );
@@ -104,26 +111,29 @@ function AlunosListPage() {
 
     setIsSubmitting(true);
     try {
-      if (alunoData.id) {
-        // Se tem ID, é uma atualização
-        await updateAluno(alunoData.id, alunoData);
+      if (dataToSave.id) {
+        await updateAluno(dataToSave.id, dataToSave);
       } else {
-        // Se não tem ID, é uma criação
-        await createAluno(alunoData);
+        await createAluno(dataToSave);
       }
       handleCloseModal();
-      fetchAlunos(); // Recarrega a lista para mostrar as alterações
+      fetchAlunos();
     } catch (err) {
-      setError("Falha ao salvar os dados do aluno.");
+      setError("Falha ao salvar os dados.");
     } finally {
       setIsSubmitting(false);
     }
   };
 
-  if (loading) return <Spinner animation="border" />;
-  if (error && !showModal) return <p className="alert alert-danger">{error}</p>;
+  if (loading)
+    return (
+      <div className="text-center">
+        <Spinner animation="border" />
+      </div>
+    );
+  if (error && !modalType) return <p className="alert alert-danger">{error}</p>;
 
-  // --- JSX PRINCIPAL ---
+  // --- JSX PRINCIPAL E COMPLETO ---
   return (
     <div>
       <div className="d-flex justify-content-between align-items-center mb-3">
@@ -143,6 +153,7 @@ function AlunosListPage() {
             <th>Ações</th>
           </tr>
         </thead>
+        {/* CORPO DA TABELA ONDE A LISTA É RENDERIZADA (ESTAVA FALTANDO) */}
         <tbody>
           {alunos.map((aluno) => (
             <tr key={aluno.id}>
@@ -180,8 +191,6 @@ function AlunosListPage() {
         </tbody>
       </table>
 
-      {/* --- MODAIS --- */}
-
       {/* Modal para Adicionar e Editar Aluno */}
       <Modal
         show={modalType === "add" || modalType === "edit"}
@@ -197,8 +206,9 @@ function AlunosListPage() {
         <Modal.Body>
           {error && <p className="alert alert-danger">{error}</p>}
           <AlunoForm
-            onSubmit={handleSave}
-            initialData={selectedAluno}
+            formData={formData}
+            onFormChange={handleFormChange}
+            onSubmit={() => handleSave(formData)}
             isSubmitting={isSubmitting}
             buttonText="Salvar"
           />
