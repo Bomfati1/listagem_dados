@@ -71,15 +71,6 @@
       "curso": "Engenharia de Software",
       "dataNascimento": "2003-08-05",
       "ativo": true
-    },
-    {
-      "id": "a82a",
-      "nome": "Matheus Bomfati Lemes",
-      "email": "matheusbomfati10@gmail.com",
-      "matricula": "20251020",
-      "curso": "Engenharia de Computação",
-      "ativo": true,
-      "dataNascimento": "2003-05-28"
     }
   ]
 }
