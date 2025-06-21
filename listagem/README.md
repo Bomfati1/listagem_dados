@@ -149,6 +149,6 @@ A API simulada pelo `json-server` oferece os seguintes endpoints para o recurso 
 
 ### ✒️ Autores
 
-Matheus Bomfati Lemes
-Reinaldo Calixto Junior
-Lucas Rafael Paulino de Oliveira
+-Matheus Bomfati Lemes
+-Reinaldo Calixto Junior
+-Lucas Rafael Paulino de Oliveira
