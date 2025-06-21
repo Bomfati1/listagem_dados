@@ -53,7 +53,7 @@ function AlunosListPage() {
   // Funções para ABRIR os modais
   const handleShowAddModal = () => {
     setFormData(defaultFormState);
-    setModalType("add");
+    setModalType("list");
   };
 
   const handleShowEditModal = (aluno) => {
@@ -193,7 +193,7 @@ function AlunosListPage() {
 
       {/* Modal para Adicionar e Editar Aluno */}
       <Modal
-        show={modalType === "add" || modalType === "edit"}
+        show={modalType === "list" || modalType === "edit"}
         onHide={handleCloseModal}
         backdrop="static"
         keyboard={false}

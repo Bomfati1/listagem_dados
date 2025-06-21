@@ -2,7 +2,7 @@
 
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
-import AlunoForm from "../components/AlunoForm"; // Supondo que o formulário está em /components
+import AlunoForm from "../components/AlunoForm";
 import { createAluno } from "../services/alunoService";
 
 function AddItemPage() {

@@ -1,1 +1,24 @@
+.main-title {
+  background-color: #292f36;
+  color: #ecf0f1; 
+  padding: 20px;
+  text-align: center;
+  margin-top: 20px; 
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
 
+
+.main-navbar .nav-link.active {
+  color: #ffffff;
+  font-weight: bold;
+  border-bottom: 2px solid #ffffff;
+}
+
+
+.main-navbar .nav-link {
+  transition: color 0.2s ease-in-out;
+}
+
+.main-navbar .nav-link:hover {
+  color: #dddddd;
+}
