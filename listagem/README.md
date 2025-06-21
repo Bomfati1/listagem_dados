@@ -52,13 +52,13 @@ Siga os passos abaixo para rodar o projeto localmente:
 1.  **Clone o repositório:**
 
     ```bash
-    git clone [https://seu-link-para-o-repositorio.git](https://seu-link-para-o-repositorio.git)
+    git clone https://github.com/Bomfati1/listagem_dados.git
     ```
 
 2.  **Navegue até a pasta do projeto:**
 
     ```bash
-    cd nome-da-pasta-do-projeto
+    cd listagem_dados/listagem
     ```
 
 3.  **Instale as dependências:**
@@ -147,9 +147,8 @@ A API simulada pelo `json-server` oferece os seguintes endpoints para o recurso 
 
 ---
 
-### ✒️ Autor
+### ✒️ Autores
 
 **Matheus Bomfati Lemes**
-
-- [LinkedIn](https://www.linkedin.com/in/seu-usuario/)
-- [GitHub](https://github.com/seu-usuario)
+**Reinaldo Calixto Junior**
+**Lucas Rafael Paulino de Oliveira**
